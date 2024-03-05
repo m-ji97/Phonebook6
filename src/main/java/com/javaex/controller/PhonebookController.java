@@ -19,7 +19,6 @@ public class PhonebookController {
 	
 	@Autowired
 	private PhonebookService phonebookService;
-	private Object personList;
 	
 	//등록폼
 	@RequestMapping(value="/writeform", method= {RequestMethod.GET,RequestMethod.POST})
@@ -57,5 +56,26 @@ public class PhonebookController {
 		
 		return "redirect:/list";
 	}
+	//수정폼
+	@RequestMapping(value="/mForm", method= {RequestMethod.GET,RequestMethod.POST})
+	public String mform(@RequestParam(value="no") int no, Model model) {
+		System.out.println("PhonebookController.mform");
+		
+		PersonVo personVo = phonebookService.exeMform(no);
+		
+		model.addAttribute("perVo", personVo);
+		
+		return "/modifyForm";
+	}
+	//수정
+	@RequestMapping(value="/modify", method= {RequestMethod.GET,RequestMethod.POST})
+	public String modify(@ModelAttribute PersonVo personVo) {
+		System.out.println("PhonebookController.modify");
+		
+		phonebookService.exeModify(personVo);
+		
+		return "redirect:/list";
+	}
+	
 	
 }

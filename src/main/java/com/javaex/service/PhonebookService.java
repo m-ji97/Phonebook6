@@ -33,9 +33,25 @@ public class PhonebookService {
 	public int exeDelete(int no) {
 		System.out.println("PhonebookService.exeDelete()");
 		
-		int count = phonebookDao.personDelete();
+		int count = phonebookDao.personDelete(no);
 		
 		return count;
+		
+	}
+	//수정폼
+	public PersonVo exeMform(int no) {
+		System.out.println("PhonebookService.exeMform()");
+		
+		PersonVo personVo = phonebookDao.personSelectOne(no);
+		
+		return personVo;
+	}
+	
+	//수정
+	public void exeModify(PersonVo personVo) {
+		System.out.println("PhonebookService.exeModify()");
+		
+		phonebookDao.personModify(personVo);
 	}
 
 }

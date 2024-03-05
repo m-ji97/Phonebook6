@@ -32,10 +32,28 @@ public class PhonebookDao {
 	}
 	
 	//삭제
-	public int personDelete() {
+	public int personDelete(int no) {
 		System.out.println("PhonebookDao.personDelete");
 		
-		return sqlSession.delete("phonebook.delete");
+		int count = sqlSession.delete("phonebook.delete",no);
+		
+		return count;
+	}
+	
+	//수정
+	public int personModify(PersonVo personVo) {
+		
+		int count = sqlSession.update("phonebook.update", personVo);
+		
+		return count;
+	}
+	//1개 가져오기
+	public PersonVo personSelectOne(int no) {
+		System.out.println("PhonebookDao.personSelectOne()");
+		
+		PersonVo personVo = sqlSession.selectOne("phonebook.selectOne",no);
+		System.out.println(personVo);
+		return personVo;
 	}
 	
 }

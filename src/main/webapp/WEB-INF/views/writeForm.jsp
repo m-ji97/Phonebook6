@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
 		전화번호를 등록하려면<br> 아래 항목을 기입하고 "등록" 버튼을 클릭하세요
 	</p>
 
-	<form action="/phonebook6/write" method="">
+	<form action="/phonebook6/write" method="get">
 		<div>
 			<label>이름(name)</label> 
 			<input type="text" name="name" value="">
