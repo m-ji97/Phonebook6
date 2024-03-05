@@ -10,7 +10,7 @@
 			values(null, #{name}, #{hp}, #{company})
 		]]>
 	</insert>
-	<select id="Select" resultType="com.javaex.vo.PersonVo">
+	<select id="select" resultType="com.javaex.vo.PersonVo">
 		<![CDATA[
 			select  person_id,
 					name,
@@ -19,5 +19,11 @@
 			from person
 		]]>
 	</select>
+	<delete id="delete" parameterType="com.javaex.vo.PersonVo">
+		<![CDATA[
+			delete from person
+			where person_id= #{personId};
+		]]>	
+	</delete>
 
 </mapper>

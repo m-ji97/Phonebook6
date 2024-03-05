@@ -28,9 +28,14 @@ public class PhonebookDao {
 	public List<PersonVo> personSelect(){
 		System.out.println("PhonebookDao.personSelect()");
 		
-		List<PersonVo> personList = sqlSession.selectList("Phonebook.Select");
-		System.out.println(personList);
-		return personList;
+		return sqlSession.selectList("phonebook.select");
+	}
+	
+	//삭제
+	public int personDelete() {
+		System.out.println("PhonebookDao.personDelete");
+		
+		return sqlSession.delete("phonebook.delete");
 	}
 	
 }

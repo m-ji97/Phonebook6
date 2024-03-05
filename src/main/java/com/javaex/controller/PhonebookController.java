@@ -1,21 +1,25 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.PhonebookService;
 import com.javaex.vo.PersonVo;
 
-import ch.qos.logback.core.model.Model;
 
 @Controller
 public class PhonebookController {
 	
 	@Autowired
 	private PhonebookService phonebookService;
+	private Object personList;
 	
 	//등록폼
 	@RequestMapping(value="/writeform", method= {RequestMethod.GET,RequestMethod.POST})
@@ -35,12 +39,23 @@ public class PhonebookController {
 	}
 	//리스트
 	@RequestMapping(value="/list", method= {RequestMethod.GET,RequestMethod.POST})
-	public String list(@ModelAttribute Model model) {
+	public String list(Model model) {
 		System.out.println("PhonebookController.list()");
 		
-		phonebookService.exeList();
+		List<PersonVo> personList = phonebookService.exeList();
 		
-		return "";
+		model.addAttribute("pList", personList);
+		
+		return "list";
+	}
+	//삭제
+	@RequestMapping(value="/delete", method= {RequestMethod.GET,RequestMethod.POST})
+	public String delete(@RequestParam("no") int no) {
+		System.out.println("PhonebookController.delete()");
+		
+		phonebookService.exeDelete(no);
+		
+		return "redirect:/list";
 	}
 	
 }

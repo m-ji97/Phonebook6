@@ -29,5 +29,13 @@ public class PhonebookService {
 		
 		return personList;
 	}
+	//삭제
+	public int exeDelete(int no) {
+		System.out.println("PhonebookService.exeDelete()");
+		
+		int count = phonebookDao.personDelete();
+		
+		return count;
+	}
 
 }
